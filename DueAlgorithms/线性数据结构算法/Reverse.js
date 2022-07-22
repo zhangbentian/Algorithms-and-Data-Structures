@@ -1,7 +1,7 @@
 /*
  * @Description: 有问题,联系qq:2479879758
  * @Author: zhulinhai
- * @LastEditTime: 2022-07-22 13:37:25
+ * @LastEditTime: 2022-07-22 15:27:25
  */
 class Node {
    constructor(value) {

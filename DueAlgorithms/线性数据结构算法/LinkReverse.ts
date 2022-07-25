@@ -1,7 +1,7 @@
 /*
  * @Description: 有问题,联系qq:2479879758
  * @Author: zhulinhai
- * @LastEditTime: 2022-07-22 11:15:01
+ * @LastEditTime: 2022-07-23 09:43:10
  */
 class LinkReverse {
     value:number;
@@ -28,9 +28,9 @@ function ReverseLink(root:any):any {
         root.next.next = root; //让最后一个节点指向自己
         return root.next; // 在最后一个节点终止递归
     }else{
-        const res:any = ReverseLink(root.next)
-        root.next.next = root;
-        root.next = null;
+        const res:any = ReverseLink(root.next) // 记录未改变节点，进行回调
+        root.next.next = root; // 改变子节点的指向
+        root.next = null; // 将父节点的指向置为空
         return res;
         
     }

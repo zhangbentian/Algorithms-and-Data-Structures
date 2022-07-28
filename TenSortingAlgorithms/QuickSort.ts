@@ -1,14 +1,14 @@
 /*
  * @Description: 有问题,联系qq:2479879758
  * @Author: zhulinhai
- * @LastEditTime: 2022-07-27 11:16:49
+ * @LastEditTime: 2022-07-28 11:14:16
  */
 // 简单版，快排，牺牲性能，创建多个数组，进行回调。
-function quickSort(arr:Array<number>):Array<number> {
+function QuickSort(arr:Array<any>):Array<any> {
     let len = arr.length;
     if (len < 2) return arr; // 递归出口
-    let lArr:Array<number> = [];
-    let rArr:Array<number> = [];
+    let lArr:any = [];
+    let rArr:any = [];
     let header = arr[0];
     for (let i = 1; i < len; i++) {
         if (header > arr[i]) {
@@ -53,32 +53,22 @@ function FastSort(arr: Array<number>, start: number = 0, right = arr.length - 1)
 }
 // console.log(FastSort([8, 1, 6, 4, 2, 6, 7, 8, 8]));
 
-function quick_sort(num: Array<number>, l: number = 0, r = num.length) {
-    let left = l, right = r - 1, key = num[left];
-    while (left < right) {
-        // 左为哨兵，从右指针开始判断
-        while (left < right && num[right] >= key) {
-            --right;
-        }
-        //如果值小于 key分界值 交换
-        num[left] = num[right];
-        
-        while (left < right && num[left] < key) {
-            ++left;
-        }
-        //如果值大于key分界值 交换
-        num[right] = num[left];
+function quickSort(arr:Array<number>,left = 0,right = arr.length-1) {
+    if(left>right) return;
+    const start = left;
+    const key = arr[left];
+    while(left < right) {
+        // 右侧开始遍历
+        while(left < right &&  arr[right] >= key) right --; // 必须大于等于，否则遇到key== arr[right]会卡死
+        arr[left] = arr[right];
+
+        while(left < right && arr[left] < key) left ++;
+        arr[right] = arr[left]
     }
-    num[right] = key;
-    //递归左右部分进行快排
-    if (right > l) { // 判断是否到达左边界
-        num = quick_sort(num, 0, left);
-    }
-    if (left + 1 < r) { // 判断是否到达右边界
-        num = quick_sort(num, left + 1, r);
-    }
-    return num;
+    arr[left] = key;
+    quickSort(arr,start,left-1)
+    quickSort(arr,left+1)
+   
+    return arr;
 }
-
-
-console.log(quick_sort([8, 1, 6, 4, 2, 6, 7, 8, 8]));
+console.log(quickSort([8, 1, 6, 4, 2, 6, 7, 8, 8]));

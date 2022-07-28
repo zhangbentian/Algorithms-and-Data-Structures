@@ -1,7 +1,7 @@
 /*
  * @Description: 有问题,联系qq:2479879758
  * @Author: zhulinhai
- * @LastEditTime: 2022-07-27 13:03:36
+ * @LastEditTime: 2022-07-28 11:27:07
  */
 //一维数组进化->二维数组
 let arr = new Array(4);
@@ -34,3 +34,4 @@ c.neighbor.push(a);
 d.neighbor.push(b);
 e.neighbor.push(b);
 f.neighbor.push(a);
+

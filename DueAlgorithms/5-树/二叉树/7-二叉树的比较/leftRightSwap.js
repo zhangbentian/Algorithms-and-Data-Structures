@@ -1,7 +1,7 @@
 /*
  * @Description: 有问题,联系qq:2479879758
  * @Author: zhulinhai
- * @LastEditTime: 2022-08-07 12:08:11
+ * @LastEditTime: 2022-08-09 10:54:29
  */
 // 左右互换二叉树相等
 class Node{
@@ -59,7 +59,7 @@ function SwapCompareTree(root1,root2) {
     let rightBool = SwapCompareTree(root1.right,root2.right);
     let leftSwap = SwapCompareTree(root1.left,root2.right);
     let rightSwap = SwapCompareTree(root1.right,root2.left)
-    return  (leftBool && rightBool) || (leftSwap,rightSwap)
+    return  (leftBool && rightBool) || (leftSwap && rightSwap)
 
 }
 console.log(SwapCompareTree(a1,a2));

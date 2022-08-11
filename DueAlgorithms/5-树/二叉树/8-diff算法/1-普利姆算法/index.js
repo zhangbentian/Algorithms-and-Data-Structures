@@ -1,17 +1,8 @@
 /*
  * @Description: 有问题,联系qq:2479879758
  * @Author: zhulinhai
- * @LastEditTime: 2022-08-10 15:17:35
+ * @LastEditTime: 2022-08-11 09:25:04
  */
-const max = 1000;
-const distance = [
-    [0, 4, 7, max, max],
-    [4, 0, 8, 6, max],
-    [7, 8, 0, max, 5],
-    [max, 6, max, 0, 7],
-    [max, max, 5, 7, 0]
-]
-
 class Node {
     neighbor = [];
     constructor(value) {
@@ -24,8 +15,16 @@ let b = new Node('B')
 let c = new Node('C')
 let d = new Node('D')
 let e = new Node('E')
-let pointSet = [a, b, c, d, e];
+const pointSet = [a, b, c, d, e]; // 点的集合，每个点都是一个对象
 
+const max = 1000; // 最大距离
+const distance = [ // 距离(边)集合i,j由pointSet内一一对应
+    [0, 4, 7, max, max],
+    [4, 0, 8, 6, max],
+    [7, 8, 0, max, 5],
+    [max, 6, max, 0, 7],
+    [max, max, 5, 7, 0]
+]
 // 需要传入点的集合，边的集合，当前已经连接进入的集合
 function getMinDisNode(pointSet, distance, nowPointSet) {
     let fromNode = null; // 线段起点

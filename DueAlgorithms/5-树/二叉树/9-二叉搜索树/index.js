@@ -1,7 +1,7 @@
 /*
  * @Description: 有问题,联系qq:2479879758
  * @Author: zhulinhai
- * @LastEditTime: 2022-08-11 11:22:24
+ * @LastEditTime: 2022-08-12 11:06:09
  */
 
 class Node {
@@ -40,4 +40,16 @@ function buildSearchTree(arr) {
     return root;
 }
 
-console.log(buildSearchTree([3,1,2,8,9,6,5,7]));
+// 类似前序遍历
+function searchByTree(root,target) {
+    if(root === null) return false;
+    if(root.value === target) return true;
+    if(root.value< target) {
+       return searchByTree(root.right,target) // 要return
+    }else{
+       return searchByTree(root.left,target)
+    }
+}
+
+const res = buildSearchTree([3,1,2,8,9,6,5,7]);
+console.log(searchByTree(res,10));

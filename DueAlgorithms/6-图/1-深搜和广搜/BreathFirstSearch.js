@@ -33,8 +33,8 @@ function bfs(nodes,target,path) {
     for (let i = 0; i < nodes.length; i++) {
         if(path.includes(nodes[i])) return false
         if(nodes[i].value === target) return true;
-        path.push(nodes[i])
-        childrenNode = [...childrenNode,...nodes[i].neighbor]
+        path.push(nodes[i]) 
+        childrenNode = [...childrenNode,...nodes[i].neighbor] //添加的太多了
         // for (let j = 0; j < nodes[i].neighbor.length; j++) {
         //     if(!path.includes(nodes[i].neighbor[j])){
         //         childrenNode.push(nodes[i].neighbor[j])

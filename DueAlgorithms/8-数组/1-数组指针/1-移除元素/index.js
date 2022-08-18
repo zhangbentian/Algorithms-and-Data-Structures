@@ -2,7 +2,7 @@
 //https://leetcode.cn/problems/remove-element/
 
 // 方法1，单指针，while重复判断新长度下最后一个值是否为val
-var removeElement = function(nums, val) {
+var removeElement = function (nums, val) {
     let len = nums.length;
     if (len < 1) return nums;
     let i = 0;
@@ -22,21 +22,35 @@ var removeElement = function(nums, val) {
 };
 // removeElement([0,4,4,0,4,4,4,0,2],4)
 
-//方法二，单双指针
-let deleteElement = (nums,val) =>{
+//方法二，双指针
+let removeElementDouble = (nums, val) => {
     let len = nums.length;
-    if(len < 1) return;
-    let r = len -1;
+    if (len < 1) return 0;
+    let r = len - 1;
     for (let i = 0; i <= r; i++) {
-        if(nums[i]===val) {
-            swap(nums,i --,r --) // 重新在原i，检查最后替换过来的值是否是val值
+        if (nums[i] === val) {
+            swap(nums, i--, r--) // 重新在原i，检查最后替换过来的值是否是val值
         }
     }
-    nums.length = r+1;
+    nums.length = r + 1;
+    return nums.length;
 }
 
-function swap(nums,l,r) {
+function swap(nums, l, r) {
     let temp = nums[l];
     nums[l] = nums[r];
     nums[r] = temp;
 }
+
+// 方法三 快慢指针
+var removeElementFastSlow = function (nums, val) {
+    let fast = 0, slow = 0;
+    while (fast < nums.length) {
+        if (nums[fast] != val) {
+            nums[slow] = nums[fast];
+            slow++;
+        }
+        fast++;
+    }
+    return slow;
+};

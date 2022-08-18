@@ -44,11 +44,11 @@ let removeDuplicates = function (nums) {
             ++fast;
             ++count;
         }
-        if (nums[fast] === nums[slow] && count < 2) {
+        if (nums[fast] === nums[slow] && count < 2) { // 快慢指针相等，且数字重复次数小于2
             ++slow;
             nums[slow] = nums[fast]
         }
-        if (nums[fast] !== nums[slow]) {
+        if (nums[fast] !== nums[slow]) { // 遇到不相等的数
             ++slow;
             nums[slow] = nums[fast]
             count = 0;

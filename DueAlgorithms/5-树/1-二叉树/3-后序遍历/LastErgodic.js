@@ -32,3 +32,16 @@ function LastErgodic(root) {
     console.log(root.value);
 }
 LastErgodic(a)
+
+//https://leetcode.cn/problems/binary-tree-postorder-traversal/
+var postorderTraversal = function(root) {
+    let res = [];
+    const LastErgodic = (root)=>{
+        if(!root) return;
+        LastErgodic(root.left)
+        LastErgodic(root.right)
+        res.push(root.val)
+    }
+    LastErgodic(root)
+    return res;
+};

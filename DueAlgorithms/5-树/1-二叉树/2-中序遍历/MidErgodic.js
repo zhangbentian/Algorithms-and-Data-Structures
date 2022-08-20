@@ -4,11 +4,11 @@
  * @LastEditTime: 2022-08-01 11:30:57
  */
 //中序遍历
-class DichotomousTree{
+class DichotomousTree {
     left = null;
     right = null;
-    constructor(value) {
-        this.value = value;
+    constructor(val = 0) {
+        this.val = val;
     }
 }
 
@@ -26,11 +26,39 @@ c.right = g;
 b.left = d;
 b.right = e;
 
+// 个人写法
 function MidErgodic(root) {
-    if(root === null) return;
+    if (root === null) return;
     MidErgodic(root.left);
-    console.log(root.value);
+    console.log(root.val);
     MidErgodic(root.right);
 }
 MidErgodic(a)
+
+// 力扣上要求 https://leetcode.cn/problems/binary-tree-inorder-traversal/
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function (root) {
+    let res = [];
+
+    const MidErgodic = (root) => {
+        if (!root) return;
+        MidErgodic(root.left)
+        res.push(root.val)
+        MidErgodic(root.right)
+    }
+
+    MidErgodic(root)
+    return res;
+};
 

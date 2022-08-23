@@ -28,4 +28,24 @@ function MidEnd(Mid,End) {
     root.right = MidEnd(MidRight,EndRight)
     return root;
 }
-console.log(MidEnd(Mid,End))
+// console.log(MidEnd(Mid,End))
+
+//
+class TreeNode {
+    constructor(val = 0, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+var buildTree = function(inorder, postorder) {
+    if(inorder.length === 0) return null;
+    const Index = inorder.indexOf(postorder[postorder.length-1])
+    const root = new TreeNode(postorder[postorder.length-1])
+    root.left = buildTree(inorder.slice(0,Index),postorder.slice(0,Index))
+    root.right = buildTree(inorder.slice(Index+1,inorder.length),postorder.slice(Index,postorder.length-1))
+    return root;
+};
+let inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
+console.log(buildTree(inorder, postorder));

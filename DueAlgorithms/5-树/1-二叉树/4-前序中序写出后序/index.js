@@ -1,8 +1,5 @@
-/*
- * @Description: 有问题,联系qq:2479879758
- * @Author: zhulinhai
- * @LastEditTime: 2022-08-06 10:42:36
- */
+
+
 class Node {
     left = null;
     right = null;
@@ -26,5 +23,27 @@ function FirstMid(First, Mid) {
     return root;
 }
 
-let res = FirstMid(First, Mid);
-console.log(res);
+// let res = FirstMid(First, Mid);
+// console.log(res);
+
+//https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+class TreeNode {
+    constructor(val = 0, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+var buildTree = function (preorder, inorder) {
+    const prelen = preorder.length;
+    const inlen = inorder.length;
+    if(prelen === 0) return null;
+    const index = inorder.indexOf(preorder[0])
+    const root = new TreeNode(preorder[0])
+    root.left = buildTree(preorder.slice(1, 1 + index), inorder.slice(0, index))
+    root.right = buildTree(preorder.slice(1 + index, prelen), inorder.slice(index + 1, inlen))
+    return root;
+
+};
+let preorder = [3, 9, 20, 15, 7], inorder = [9, 3, 15, 20, 7]
+console.log(buildTree(preorder, inorder));

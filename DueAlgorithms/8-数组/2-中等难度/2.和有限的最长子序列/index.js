@@ -1,28 +1,14 @@
-var answerQueries = function (nums, queries) {
-    let arr = [];
-    for (let i = 0; i < queries.length; i++) {
-        let start = 0, end = 0, max = 0;
-        let res = 0;
-        for (let j = 0; j < nums.length; j++) {
-            res += nums[j]
-            if (res > queries[i]) {
-                res -= nums[start]
-                start++;
-            }
-            end++;
-
-            if (max < end - start) {
-                max = end - start;
-                console.log("🚀 ~ file: index.js ~ line 14 ~ answerQueries ~ max", start, end)
-            }
+var coinChange = function(coins, amount) {
+    var dp = new Array(amount + 1 ).fill(Infinity); // 初始化为Infinity->无穷大
+    dp[0] = 0;
+    for(let i= 1; i <= amount; i++) {
+        for(let coin of coins) {
+            if(i - coin < 0) continue;
+            dp[i] = Math.min(dp[i], dp[i-coin] + 1)
         }
-        arr[i] = max;
-    }
-    return arr;
-
+    } 
+   
+    return dp[amount] == Infinity ? -1 : dp[amount];
 };
-
-let nums = [736411, 184882, 914641, 37925, 214915], queries = [718089, 665450]
-
-console.log(answerQueries(nums, queries));
-console.log((914641 + 37925 + 214915) <= 718089);
+let coins = [1, 2, 5], amount = 11
+coinChange(coins,amount)

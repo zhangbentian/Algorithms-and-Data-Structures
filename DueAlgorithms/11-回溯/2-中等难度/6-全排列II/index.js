@@ -8,7 +8,7 @@ var permuteUnique = function (nums) {
     const res = [];
     let used = new Array(nums.length).fill(false);
     const backtrack = (nums) => {
-        if(track.length === nums.length) return res.push([...track])
+        if (track.length === nums.length) return res.push([...track])
         for (let i = 0; i < nums.length; i++) {
             if (used[i]) {
                 continue;
@@ -30,5 +30,34 @@ var permuteUnique = function (nums) {
     backtrack(nums.sort());
     return res;
 };
-let nums = [1,1,2]
+
+var permuteUnique = function (nums) {
+    let track = [];
+    const res = [];
+    let used = new Array(nums.length).fill(false);
+    const backtrack = (nums) => {
+        if (track.length === nums.length) return res.push([...track])
+        let preNum = -666;
+        for (let i = 0; i < nums.length; i++) {
+            if (used[i]) {
+                continue;
+            }
+            if (preNum === nums[i]) continue;
+
+            track.push(nums[i]);
+            used[i] = true;
+            // 记录这条树枝上的值
+            preNum = nums[i];
+            backtrack(nums);
+
+            track.pop();
+            used[i] = false;
+        }
+    }
+
+    backtrack(nums.sort());
+    return res;
+};
+
+let nums = [1, 1, 2]
 console.log(permuteUnique(nums));

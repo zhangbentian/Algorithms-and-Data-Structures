@@ -22,6 +22,6 @@ var permute = function (nums) {
     backtrack(nums, [], used)
     return res;
 };
-let nums = [1, 2, 3]
+let nums = ['a', 'b', 'c']
 console.log(permute(nums));
 

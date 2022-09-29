@@ -3,6 +3,7 @@
  * @Author: zhulinhai
  * @LastEditTime: 2022-07-27 12:10:38
  */
+//先进先出
 class Queue{
     constructor(arr=[]) {
         this.arr = arr;
@@ -14,7 +15,6 @@ class Queue{
         return this.arr.shift();
     }
 }
-
 const queue = new Queue([1,2,3]);
 console.log(queue.arr);
 queue.pop();

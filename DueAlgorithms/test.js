@@ -1,1 +1,3 @@
-console.log('a'.charCodeAt(0));
+let pq = [3,2,1]
+console.log(pq.sort());
+console.log(pq);

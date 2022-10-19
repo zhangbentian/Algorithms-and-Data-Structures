@@ -3,27 +3,6 @@
  * @Author: zhulinhai
  * @LastEditTime: 2022-07-28 11:14:16
  */
-// 简单版，快排，牺牲性能，创建多个数组，进行回调。
-function QuickSort(arr:Array<any>):Array<any> {
-    let len = arr.length;
-    if (len < 2) return arr; // 递归出口
-    let lArr:any = [];
-    let rArr:any = [];
-    let header = arr[0];
-    for (let i = 1; i < len; i++) {
-        if (header > arr[i]) {
-            lArr.push(arr[i])
-        } else {
-            rArr.push(arr[i])
-        }
-    }
-    lArr = quickSort(lArr);
-    rArr = quickSort(rArr); // 使用递归回调的方式
-    lArr.push(header);
-    return lArr.concat(rArr)
-}
-
-// console.log(quickSort([8, 1, 6, 4, 2, 6, 7, 8, 8]));
 
 function swap(arr: { [x: string]: any; }, left: string | number, right: string | number) {
     let temp = arr[left];
@@ -46,29 +25,29 @@ function FastSort(arr: Array<number>, start: number = 0, right = arr.length - 1)
     }
     swap(arr, start, left);
     console.log(arr);
-    
+
     FastSort(arr, start, right);
     FastSort(arr, right + 1)
     return arr;
 }
-// console.log(FastSort([8, 1, 6, 4, 2, 6, 7, 8, 8]));
+// console.log(FastSort([7, 1, 6, 4, 2, 6, 8, 8, 8]));
 
-function quickSort(arr:Array<number>,left = 0,right = arr.length-1) {
-    if(left>right) return;
-    const start = left;
-    const key = arr[left];
-    while(left < right) {
+//改进版修复无法排序重复数字问题
+function quickSort(arr: Array<number>, left = 0, right = arr.length - 1) {
+    if (left > right) return; //判断边界问题
+    const start = left; 
+    const key = arr[left]; //哨兵
+    while (left < right) {
         // 右侧开始遍历
-        while(left < right &&  arr[right] >= key) right --; // 必须大于等于，否则遇到key== arr[right]会卡死
+        while (left < right && arr[right] >= key) right--; // 必须大于等于，否则遇到key== arr[right]会卡死
         arr[left] = arr[right];
 
-        while(left < right && arr[left] < key) left ++;
+        while (left < right && arr[left] < key) left++;
         arr[right] = arr[left]
     }
     arr[left] = key;
-    quickSort(arr,start,left-1)
-    quickSort(arr,left+1)
-   
+    quickSort(arr, start, left - 1)
+    quickSort(arr, left + 1)
     return arr;
 }
-console.log(quickSort([8, 1, 6, 4, 2, 6, 7, 8, 8]));
+console.log(quickSort([8, 1, 6, 4, 2, 6, 7, 10, 8]));
